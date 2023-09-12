@@ -16,6 +16,20 @@ ln -s $(pwd)/bin ~/bin
 
 ## bin/<script> usage
 
+### `dir_comparison.sh`
+Ultra fast directory camparison.
+
+```sh
+Usage: bin/dir_comparison.sh <source_directory> <destination_directory>
+
+Compares files in source_directory with those in destination_directory.
+Outputs any files that are present in the source but missing from the destination.
+
+Example:
+  bin/dir_comparison.sh /path/to/source/ /path/to/destination/
+```
+
+
 ### `git_status_check.sh`
 
 `git_status_check --help`
