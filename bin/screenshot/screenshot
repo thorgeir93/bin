@@ -1,0 +1,4 @@
+#!/bin/bash
+TIMESTAMP=$(date +'%Y%m%d-%H%M%S')
+FILENAME=~/media/screenshots/${TIMESTAMP}.png
+scrot -s -e 'xclip -selection clipboard -target image/png -i $f; notify-send -i camera-symbolic "Screenshot taken!" "The screenshot has been saved to ~/media/screenshots"' $FILENAME
