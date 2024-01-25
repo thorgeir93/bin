@@ -5,12 +5,14 @@ Custom made and copied script from the web to make my life easier.
 
 # Make repo accessable in homedir
 
+Make sure that there aren't already `~/bin` folder.
+
 ```sh
 # Navigate to the repo root
 cd /home/thorgeir/git/hub/thorgeir/bin
 
 # create symbolic link on in the homedir, to make it easy accessable.
-ln -s $(pwd)/bin ~/bin
+ln -s $(pwd)/bin ~/
 ```
 
 
