@@ -24,6 +24,10 @@ find . -type f > $source_files
 # Get the total number of files for progress tracking
 total_files=$(wc -l < "$source_files")
 current_file=0
+last_reported_progress=-1
+
+# Calculate the number of digits in total_files for formatting
+total_files_digits=${#total_files}
 
 error_track_file=$(mktemp)
 
@@ -36,10 +40,12 @@ while read -r file; do
   src="${source_dir}/${file}"
   dst="${dest_dir}/${file}"
 
-  if [ $current_file % 100 == 0 ]; then
-    echo "Process status [$progress%] ..."
-  fi
+  if (( progress > last_reported_progress )); then
+ 	  printf "Current progress: [%3d%%] (%*d / %d)\n" $progress $total_files_digits $current_file $total_files
 
+      #echo "Current progress: [$progress%] ($current_file/$total_files)"
+      last_reported_progress=$progress
+  fi
 
   # Check if the file exists in the destination
   if [ ! -f "$dst" ]; then
@@ -56,6 +62,7 @@ while read -r file; do
   # Compare modification times
   if [ $(stat -c%Y "$src") -ne $(stat -c%Y "$dst") ]; then
       echo "Modification time mismatch: $file" >> $error_track_file
+      continue
   fi 
 
 done < $source_files
