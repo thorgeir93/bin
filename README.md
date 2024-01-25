@@ -46,3 +46,10 @@ Examples:
   ./check_git_changes.sh /path/to/start
 ```
 
+### `media/sync/
+Contains helper script when syncing images from one hard drive to another.
+
+Verify sync have been synced from local PC to Icybox hard drive:
+```
+bash ~/bin/media/sync/verify_sync_fast.sh ~/media /mnt/icybox2/media
+```

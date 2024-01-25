@@ -29,9 +29,8 @@ find "$START_DIR" -type d -name .git | while read gitdir; do
 
     # Go into the repo directory
     pushd "$repo" > /dev/null
-
     # Check for changes
-    if git status --porcelain | grep -q "^[MADRCU]"; then
+    if git status --porcelain | grep -q "^.*[MADRCU]"; then
         echo "[ CHANGES ] $repo"
     else
         echo "[ OK ] $repo"
