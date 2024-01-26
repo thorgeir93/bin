@@ -16,6 +16,13 @@
 source_dir=$1; shift
 dest_dir=$1; shift
 
+
+# Enhanced echo statement
+echo -e "\033[1;36m====== File Integrity Check ======\033[0m"
+echo -e "\033[1;33mSource Directory.....:\033[0m $source_dir"
+echo -e "\033[1;33mDestination Directory:\033[0m $dest_dir"
+echo -e "\033[1;32mStarting verification process...\033[0m"
+
 source_files=$(mktemp)
 
 cd $source_dir
@@ -31,6 +38,8 @@ total_files_digits=${#total_files}
 
 error_track_file=$(mktemp)
 
+echo "[<progress>] (<files checked> / <total files>)"
+
 while read -r file; do
   # Increment file counter and calculate progress
   ((current_file++))
@@ -41,7 +50,7 @@ while read -r file; do
   dst="${dest_dir}/${file}"
 
   if (( progress > last_reported_progress )); then
- 	  printf "Current progress: [%3d%%] (%*d / %d)\n" $progress $total_files_digits $current_file $total_files
+ 	  printf "[%3d%%] (%*d / %d)\n" $progress $total_files_digits $current_file $total_files
 
       #echo "Current progress: [$progress%] ($current_file/$total_files)"
       last_reported_progress=$progress
