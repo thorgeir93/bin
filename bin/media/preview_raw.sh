@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Define the directory and output file
-DIR=~/media/photos/2023
+# DIR=~/media/photos/2023
+DIR=/mnt/icybox2/media/photos/2023
 OUTPUT="preview.jpg"
 TEMP_DIR=$(mktemp -d)
 
